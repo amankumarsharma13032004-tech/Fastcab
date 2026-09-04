@@ -1,1 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FastCab | Premium Cab Service</title>
 
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+  background:#080808;
+  color:white;
+}
+
+nav{
+  height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 7%;
+  background:#050505;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.logo{
+  font-size:28px;
+  font-weight:bold;
+  color:#ffc107;
+}
+
+nav a{
+  color:white;
+  text-decoration:none;
+  margin-left:20px;
+}
+
+.hero{
+  min-height:90vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:30px 20px;
+  background:linear-gradient(135deg,#111,#252525);
+}
+
+.hero h1{
+  font-size:48px;
+  margin-bottom:15px;
+}
+
+.hero h1 span{
+  color:#ffc107;
+}
+
+.hero p{
+  color:#ccc;
+  font-size:18px;
+  margin-bottom:30px;
+}
+
+.booking{
+  max-width:500px;
+  margin:auto;
+  background:#151515;
+  padding:25px;
+  border-radius:18px;
+  box-shadow:0 10px 40px #000;
+}
+
+.booking h2{
+  margin-bottom:20px;
+}
+
+input,select{
+  width:100%;
+  padding:15px;
+  margin:8px 0;
+  border:none;
+  border-radius:10px;
+  background:#292929;
+  color:white;
+}
+
+button{
+  width:100%;
+  padding:15px;
+  margin-top:12px;
+  border:none;
+  border-radius:10px;
+  background:#ffc107;
+  color:#000;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#ffca28;
+}
+
+section{
+  padding:60px 7%;
+  text-align:center;
+}
+
+section h2{
+  font-size:32px;
+  margin-bottom:30px;
+}
+
+.cards{
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.card{
+  background:#171717;
+  padding:25px;
+  border-radius:15px;
+  width:280px;
+}
+
+.card h3{
+  color:#ffc107;
+  margin-bottom:10px;
+}
+
+.card p{
+  color:#bbb;
+}
+
+.contact{
+  background:#111;
+}
+
+footer{
+  text-align:center;
+  padding:25px;
+  color:#888;
+  background:#050505;
+}
+
+@media(max-width:600px){
+  .hero h1{
+    font-size:36px;
+  }
+
+  nav{
+    padding:0 5%;
+  }
+
+  nav a{
+    margin-left:8px;
+    font-size:13px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">🚕 FastCab</div>
+  <div>
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="hero" id="home">
+  <div>
+    <h1>Ride Fast.<br><span>Ride Safe.</span></h1>
+    <p>Book your comfortable cab with FastCab</p>
+
+    <div class="booking">
+      <h2>🚕 Book Your Cab</h2>
+
+      <input id="pickup" type="text" placeholder="Pickup Location">
+
+      <input id="drop" type="text" placeholder="Drop Location">
+
+      <input id="date" type="date">
+
+      <input id="time" type="time">
+
+      <select id="car">
+        <option value="Sedan">Sedan - Comfortable</option>
+        <option value="SUV">SUV - Premium</option>
+        <option value="Hatchback">Hatchback - Budget</option>
+      </select>
+
+      <button onclick="bookCab()">Book Now on WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+<section id="services">
+  <h2>Our Services</h2>
+
+  <div class="cards">
+
+    <div class="card">
+      <h3>🚕 Local Ride</h3>
+      <p>Fast and comfortable rides around your city.</p>
+    </div>
+
+    <div class="card">
+      <h3>🛣️ Outstation</h3>
+      <p>Safe and affordable long-distance cab service.</p>
+    </div>
+
+    <div class="card">
+      <h3>✈️ Airport Transfer</h3>
+      <p>On-time airport pickup and drop service.</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <h2>Contact FastCab</h2>
+  <p>📞 Call us for quick booking</p>
+  <br>
+  <button onclick="callCab()">Call Now</button>
+</section>
+
+<footer>
+  © 2026 FastCab | Premium Cab Service
+</footer>
+
+<script>
+
+function bookCab(){
+
+  let pickup = document.getElementById("pickup").value;
+  let drop = document.getElementById("drop").value;
+  let date = document.getElementById("date").value;
+  let time = document.getElementById("time").value;
+  let car = document.getElementById("car").value;
+
+  if(!pickup || !drop || !date || !time){
+    alert("Please fill all booking details.");
+    return;
+  }
+
+  let message =
+  "🚕 *FastCab Booking*%0A%0A" +
+  "📍 Pickup: " + pickup + "%0A" +
+  "📍 Drop: " + drop + "%0A" +
+  "📅 Date: " + date + "%0A" +
+  "⏰ Time: " + time + "%0A" +
+  "🚗 Car: " + car;
+
+  // APNA WHATSAPP NUMBER YAHAN DAALO
+  let phone = "919XXXXXXXXX";
+
+  window.open(
+    "https://wa.me/" + phone + "?text=" + message,
+    "_blank"
+  );
+}
+
+function callCab(){
+
+  // APNA PHONE NUMBER YAHAN DAALO
+  window.location.href = "tel:+919XXXXXXXXX";
+
+}
+
+</script>
+
+</body>
+  </html>
